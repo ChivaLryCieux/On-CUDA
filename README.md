@@ -58,6 +58,20 @@ powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 .\bin\debug_conv.exe
 ```
 
+**每次改动后跑这个**（回归门禁）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\verify.ps1            # 全量：构建+跑分+校验
+powershell -ExecutionPolicy Bypass -File scripts\verify.ps1 -SkipBuild # 只跑分
+```
+
+它会回答两个问题：**每个 kernel 还正确吗**（relL2 对 CPU 参考）、**有没有变慢**
+（GFLOP/s 对基线）。正确性失败是硬错误（exit 1），性能回退只警告——
+GPU 频率和主机负载会让数字漂移，回退 10% 先重跑一次再信。
+
+基线在 [scripts\verify.ps1](scripts/verify.ps1) 顶部的 `$baselines` 表里。
+**每次你真的把某个 kernel 调快了，就去更新那张表**，否则门禁只会一直喊狼来了。
+
 ---
 
 ## 实测结果
