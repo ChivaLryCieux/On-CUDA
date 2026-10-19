@@ -1,0 +1,39 @@
+# ---- build artifacts ----
+bin/
+build/
+cmake-build-*/
+out/
+
+# ---- compiler output ----
+*.obj
+*.o
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.nupkg
+
+# ---- Nsight reports ----
+*.ncu-rep
+*.nsys-rep
+*.nsys-trace
+*.qdstrm
+*.qdrep
+*.sqlite
+*.json.tmp
+
+# ---- editors / OS ----
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+desktop.ini
+
+# ---- misc temp ----
+*.tmp
+*.log
+*.pyc
+__pycache__/
